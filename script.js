@@ -15,18 +15,18 @@ function game(){
     let winner = (playerScore > computerScore) ? "Congrats, you won the game!!!":
         (playerScore < computerScore) ? "You lost the game. Sorry.":
         "TIE! Try again? y/n";
-
+s
     return winner;
 }
 
 //create opponent/computer logic
 function computerPlay(){
-    let choice = Math.floor(Math.random()*3);
-    return (choice == 0) ? "rock": (choice == 1) ? "paper": "scissors"; 
+    let randNum = Math.floor(Math.random()*3);
+    return (randNum == 0) ? "rock": (randNum == 1) ? "paper": "scissors"; 
 }
 
 
-//create round logic that takes computer and player choice and display result
+//create game round logic
 function playRound(playerChoice, computerChoice){
     playerChoice = playerChoice.toLowerCase();
 
@@ -34,13 +34,10 @@ function playRound(playerChoice, computerChoice){
         (playerChoice == computerChoice) ? "tie": 
         ((playerChoice == "rock" && computerChoice == "paper") ||
         (playerChoice == "scissors" && computerChoice == "rock") ||
-        (playerChoice == "paper" && computerChoice == "scissors")) ? "lost": 
-        "won";
-
+        (playerChoice == "paper" && computerChoice == "scissors")) ? "lost": "won";
     return result;
 }
 
-//helper function
 function hasWrongVal(value){
     return (value == "rock" || value == "paper" || value == "scissors")? false: true;
 }
