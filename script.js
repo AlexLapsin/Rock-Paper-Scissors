@@ -15,7 +15,7 @@ function game(){
     let winner = (playerScore > computerScore) ? "Congrats, you won the game!!!":
         (playerScore < computerScore) ? "You lost the game. Sorry.":
         "TIE! Try again? y/n";
-s
+        
     return winner;
 }
 
