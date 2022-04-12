@@ -1,16 +1,3 @@
-//game logic that takes 5 rounds and display the winner
-// function game(){
-//     let playerScore = 0;
-//     let computerScore = 0;
-
-//     for(i=0; i<5; i++){
-//         let playerSelect = window.prompt("Please enter your choice", "rock, scissors, paper");
-//         let result = playRound(playerSelect, computerPlay());
-//         if(result == "won") {alert("You won this round");playerScore++}
-//         else if(result == "lost") {alert("You lost this round");computerScore++;}
-//         else if(result == "tie"){alert("it's a tie")}
-//         else {alert("Wrong value"); return};
-//     }
 
 //     let winner = (playerScore > computerScore) ? "Congrats, you won the game!!!":
 //         (playerScore < computerScore) ? "You lost the game. Sorry.":
@@ -20,13 +7,21 @@
 // }
 
 
+let playerScore = 0;
+let computerScore = 0;
 const buttons = document.querySelectorAll('button')
+const displayDiv = document.querySelector("#displayResults");
+const scoreText = document.createElement('h3');
 
 buttons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
         const playerChoice = (button.id == 'rock')? "rock": 
             (button.id == 'paper')? "paper" : "scissors";
-        playRound(playerChoice, computerPlay())}
+        
+        displayDiv.appendChild(scoreText);
+        displayScore(playRound(playerChoice, computerPlay()))
+        
+        }
     )
 });
 // ///////////////////////////////////////////////////////////////////////////
@@ -43,6 +38,14 @@ buttons.forEach((button) => {
 // ///////////////////////////////////////////////////////////////////////////
 
 
+function displayScore(result){
+
+    
+
+    (result == "won")? playerScore++ : (result == "lost")? computerScore++: 
+        (playerScore++, computerScore++);
+    scoreText.textContent = `Player: ${playerScore}  Computer: ${computerScore}`;
+}    
 
 //opponent/computer
 function computerPlay(){
@@ -61,9 +64,7 @@ function playRound(playerChoice, computerChoice){
         (playerChoice == "scissors" && computerChoice == "rock") ||
         (playerChoice == "paper" && computerChoice == "scissors")) ? "lost": "won";
 
-        console.log("Player:"+ playerChoice);
-        console.log("Computer:"+ computerChoice);
-        console.log(result);
+    console.log(result);
     return result;
 }
 
